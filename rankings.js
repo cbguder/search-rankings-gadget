@@ -28,12 +28,16 @@ function getRank(query, url, tld, start, element) {
 			_IG_AdjustIFrameHeight();
 		}
 	});
-};
+}
 
-getRank("main tur", "maintur.com", "", 0, _gel("results"));
-getRank("cruise tur", "cruisetur.com", "", 0, _gel("results"));
-getRank("chocolate its", "chocolateits.com", "", 0, _gel("results"));
+function init() {
+	getRank("main tur", "maintur.com", "", 0, _gel("results"));
+	getRank("cruise tur", "cruisetur.com", "", 0, _gel("results"));
+	getRank("chocolate its", "chocolateits.com", "", 0, _gel("results"));
 
-getRank("main tur", "maintur.com", "tr", 0, _gel("results"));
-getRank("cruise tur", "cruisetur.com", "tr", 0, _gel("results"));
-getRank("chocolate its", "chocolateits.com", "tr", 0, _gel("results"));
+	getRank("main tur", "maintur.com", "tr", 0, _gel("results"));
+	getRank("cruise tur", "cruisetur.com", "tr", 0, _gel("results"));
+	getRank("chocolate its", "chocolateits.com", "tr", 0, _gel("results"));	
+}
+
+_IG_RegisterOnloadHandler(init);
