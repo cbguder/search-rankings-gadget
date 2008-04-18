@@ -1,8 +1,9 @@
 var prefs = new _IG_Prefs();
+var results = _gel('results');
 
-function getRank(query, url, tld, start, element) {
+function getRank(query, url, tld, start, element, urlindex, keywordindex) {
 	base = "http://www.google.com";
-	if(tld != "") { base += "." + tld; }
+	if(tld != "us") { base += "." + tld; }
 	queryURL = base + '/search?q=' + _esc(query);
 	if(start > 0) { queryURL += "&start=" + start; }
 	_IG_FetchContent(queryURL, function(responseText) {
@@ -22,27 +23,29 @@ function getRank(query, url, tld, start, element) {
 		}
 
 		if(!found & start < 90) {
-			getRank(query, url, tld, start + 10, element);
+			getRank(query, url, tld, start + 10, urlindex, keywordindex);
 		} else {
-			if(tld == "") { tld = "us"; }
 			if(!found) { pos = "-"; }
-			element.innerHTML += "<tr><td>" + url + "</td><td>" + query + "</td><td>" + pos + '</td><td><img src="http://search-rankings-gadget.googlecode.com/svn/trunk/images/flags/' + tld + '.png" /></td></tr>';
-			_IG_AdjustIFrameHeight();
+			_gel(urlindex + '_' + keywordindex + '_' + tld).innerHTML = pos;
 		}
 	});
 }
 
 function init() {
+	tlds = ["us", "tr"];
 	terms = prefs.getArray("terms");
 	for(i = 0; i < terms.length; i++) {
 		parts = terms[i].split(":");
 		url = parts[0];
 		keywords = parts[1].split(",");
 		for(j = 0; j < keywords.length; j++) {
-			getRank(keywords[j], url, "", 0, _gel("results"));
-			getRank(keywords[j], url, "tr", 0, _gel("results"));
+			for(k = 0; k < tlds.length; k++) {
+				results.innerHTML += "<tr><td>" + url + "</td><td>" + keywords[j] + '</td><td><span id="' + i + '_' + j + '_' + tld+ '"></span></td><td><img src="http://search-rankings-gadget.googlecode.com/svn/trunk/images/flags/' + tlds[k] + '.png" /></td></tr>';				
+				getRank(keywords[j], url, tlds[k], 0, i, j);
+			}
 		}
 	}
+	_IG_AdjustIFrameHeight();
 }
 
 _IG_RegisterOnloadHandler(init);
