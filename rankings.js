@@ -1,3 +1,5 @@
+var prefs = new _IG_Prefs();
+
 function getRank(query, url, tld, start, element) {
 	base = "http://www.google.com";
 	if(tld != "") { base += "." + tld; }
@@ -31,7 +33,7 @@ function getRank(query, url, tld, start, element) {
 }
 
 function init() {
-	terms = getArray("terms");
+	terms = prefs.getArray("terms");
 	for(i = 0; i < terms.length; i++) {
 		parts = terms[i].split(":");
 		url = parts[0];
