@@ -1,9 +1,7 @@
 var prefs = new _IG_Prefs();
 
 function getRank(query, url, tld, start, urlindex, keywordindex) {
-	base = "http://www.google.com";
-	if(tld != "us") { base += "." + tld; }
-	queryURL = base + '/search?q=' + _esc(query);
+	queryURL = 'http://' + tld + '/search?q=' + _esc(query);
 	if(start > 0) { queryURL += "&start=" + start; }
 	_IG_FetchContent(queryURL, function(responseText) {
 		tmp = document.createElement("div");
@@ -25,7 +23,7 @@ function getRank(query, url, tld, start, urlindex, keywordindex) {
 			getRank(query, url, tld, start + 10, urlindex, keywordindex);
 		} else {
 			if(!found) { pos = "-"; }
-			_gel(urlindex + '_' + keywordindex + '_' + tld).appendChild(document.createTextNode(pos));
+			_gel(urlindex + '_' + keywordindex + '_' + image_name(tld)).appendChild(document.createTextNode(pos));
 		}
 	});
 }
@@ -34,6 +32,7 @@ function init() {
 	tlds = ["us", "tr"];
 	results = _gel('results');
 	terms = prefs.getArray("terms");
+	tlds = prefs.getArray("google_domains");
 
 	for(k = 0; k < tlds.length; k++) {
 		for(i = 0; i < terms.length; i++) {
@@ -51,14 +50,14 @@ function init() {
 				row.appendChild(cell);
 				
 				cell = document.createElement("td");
-				cell.setAttribute('id', i + '_' + j + '_' + tlds[k]);
+				cell.setAttribute('id', i + '_' + j + '_' + image_name(tlds[k]));
 				cell.className = "centered";
 				row.appendChild(cell);
 				
 				cell = document.createElement("td");
 				cell.className = "centered";
 				img = document.createElement("img");
-				img.setAttribute('src', 'http://search-rankings-gadget.googlecode.com/svn/trunk/images/flags/' + tlds[k] + '.png');
+				img.setAttribute('src', 'http://search-rankings-gadget.googlecode.com/svn/trunk/images/flags/' + image_name(tlds[k]) + '.png');
 				cell.appendChild(img);
 				row.appendChild(cell);
 				
@@ -69,6 +68,14 @@ function init() {
 		}
 	}
 	_IG_AdjustIFrameHeight();
+}
+
+function image_name(tld) {
+	if(tld == "www.google.com") {
+		return "us";
+	} else {
+		return tld.substr(15,2);
+	}
 }
 
 _IG_RegisterOnloadHandler(init);
