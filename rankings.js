@@ -34,13 +34,19 @@ function getRank(query, url, tld, start, urlindex, keywordindex) {
 function init() {
 	tlds = ["us", "tr"];
 	terms = prefs.getArray("terms");
-	for(i = 0; i < terms.length; i++) {
-		parts = terms[i].split(":");
-		url = parts[0];
-		keywords = parts[1].split(",");
-		for(j = 0; j < keywords.length; j++) {
-			for(k = 0; k < tlds.length; k++) {
-				results.innerHTML += "<tr><td>" + url + "</td><td>" + keywords[j] + '</td><td><span id="' + i + '_' + j + '_' + tld+ '"></span></td><td><img src="http://search-rankings-gadget.googlecode.com/svn/trunk/images/flags/' + tlds[k] + '.png" /></td></tr>';				
+	for(k = 0; k < tlds.length; k++) {
+		for(i = 0; i < terms.length; i++) {
+			parts = terms[i].split(":");
+			url = parts[0];
+			keywords = parts[1].split(",");
+			for(j = 0; j < keywords.length; j++) {
+				id = i + "_" + j + "_" + tlds[k];
+				row = document.createElement("tr");
+				cell = document.createElement("td"); cell.appendChild(document.createTextNode(url)); row.appendChild(cell);
+				cell = document.createElement("td"); cell.appendChild(document.createTextNode(keywords[j])); row.appendChild(cell);
+				cell = document.createElement("td"); span = document.createElement("span");	span.setAttribute('id', id); span.appendChild(document.createTextNode("...")); cell.appendChild(span); row.appendChild(cell);
+				cell = document.createElement("td"); img = document.createElement("img"); img.setAttribute('src', 'http://search-rankings-gadget.googlecode.com/svn/trunk/images/flags/' + tlds[k] + '.png'); cell.appendChild(img); row.appendChild(cell);
+				results.appendChild(row);
 				getRank(keywords[j], url, tlds[k], 0, i, j);
 			}
 		}
