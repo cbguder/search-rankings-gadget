@@ -71,6 +71,8 @@ function init() {
 }
 
 function image_name(tld) {
+	return "us";
+/*
 	i = tld.indexOf("google.co");
 	if(i = -1) { return "us"; }
 	r = tld.substring(i, tld.length - 1);
@@ -82,6 +84,7 @@ function image_name(tld) {
 	} else {
 		return r.substring(1, r.length - 1);
 	}
+*/
 }
 
 _IG_RegisterOnloadHandler(init);
