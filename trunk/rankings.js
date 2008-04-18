@@ -74,8 +74,14 @@ function image_name(tld) {
 	i = tld.indexOf("google.co");
 	if(i = -1) { return "us"; }
 	r = tld.substring(i, tld.length - 1);
-	if(r[0] == "m") { return r.substring(2, r.length - 1); }
-	else { return r.substring(1, r.length - 1); }
+	
+	if(r.substr(0,1) == "m" && r.length == 1) { return "us"; }
+	
+	if(r.substr(0,1) == "m") {
+		return r.substring(2, r.length - 1);
+	} else {
+		return r.substring(1, r.length - 1);
+	}
 }
 
 _IG_RegisterOnloadHandler(init);
