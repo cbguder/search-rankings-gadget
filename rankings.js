@@ -1,7 +1,7 @@
 var prefs = new _IG_Prefs();
 var results = _gel('results');
 
-function getRank(query, url, tld, start, element, urlindex, keywordindex) {
+function getRank(query, url, tld, start, urlindex, keywordindex) {
 	base = "http://www.google.com";
 	if(tld != "us") { base += "." + tld; }
 	queryURL = base + '/search?q=' + _esc(query);
