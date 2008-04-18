@@ -71,11 +71,11 @@ function init() {
 }
 
 function image_name(tld) {
-	if(tld == "www.google.com") {
-		return "us";
-	} else {
-		return tld.substr(15,2);
-	}
+	i = tld.indexOf("google.co");
+	if(i = -1) { return "us"; }
+	r = tld.substring(i, tld.length - 1);
+	if(r[0] == "m") { return r.substring(2, r.length - 1); }
+	else { return r.substring(1, r.length - 1); }
 }
 
 _IG_RegisterOnloadHandler(init);
