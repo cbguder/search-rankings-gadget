@@ -1,5 +1,4 @@
 var prefs = new _IG_Prefs();
-var results = _gel('results');
 
 function getRank(query, url, tld, start, urlindex, keywordindex) {
 	base = "http://www.google.com";
@@ -33,6 +32,7 @@ function getRank(query, url, tld, start, urlindex, keywordindex) {
 
 function init() {
 	tlds = ["us", "tr"];
+	results = _gel('results');
 	terms = prefs.getArray("terms");
 
 	for(k = 0; k < tlds.length; k++) {
