@@ -9,7 +9,7 @@ function getRank(query, url, tld, start, element) {
 		links = tmp.getElementsByTagName("a");
 		pos = start;
 		found = false;
-		for(i=0; i < links.length; i++) {
+		for(i = 0; i < links.length; i++) {
 			if(links[i].className == "l") {
 				pos++;
 				if(links[i].href.indexOf(url) != -1) {
@@ -31,13 +31,16 @@ function getRank(query, url, tld, start, element) {
 }
 
 function init() {
-	getRank("main tur", "maintur.com", "", 0, _gel("results"));
-	getRank("cruise tur", "cruisetur.com", "", 0, _gel("results"));
-	getRank("chocolate its", "chocolateits.com", "", 0, _gel("results"));
-
-	getRank("main tur", "maintur.com", "tr", 0, _gel("results"));
-	getRank("cruise tur", "cruisetur.com", "tr", 0, _gel("results"));
-	getRank("chocolate its", "chocolateits.com", "tr", 0, _gel("results"));	
+	terms = getArray("terms");
+	for(i = 0; i < terms.length; i++) {
+		parts = terms[i].split(":");
+		url = parts[0];
+		keywords = parts[1].split(",");
+		for(j = 0; j < keywords.length; j++) {
+			getRank(keywords[j], url, "", 0, _gel("results"));
+			getRank(keywords[j], url, "tr", 0, _gel("results"));
+		}
+	}
 }
 
 _IG_RegisterOnloadHandler(init);
