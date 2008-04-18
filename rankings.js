@@ -52,9 +52,11 @@ function init() {
 				
 				cell = document.createElement("td");
 				cell.setAttribute('id', i + '_' + j + '_' + tlds[k]);
+				cell.className = "centered";
 				row.appendChild(cell);
 				
 				cell = document.createElement("td");
+				cell.className = "centered";
 				img = document.createElement("img");
 				img.setAttribute('src', 'http://search-rankings-gadget.googlecode.com/svn/trunk/images/flags/' + tlds[k] + '.png');
 				cell.appendChild(img);
