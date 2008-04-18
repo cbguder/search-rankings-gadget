@@ -1,7 +1,7 @@
 var prefs = new _IG_Prefs();
 
 function getRank(query, url, tld, start, urlindex, keywordindex) {
-	queryURL = 'http://' + tld + '/search?q=' + _esc(query);
+	queryURL = 'http://www.' + tld + '/search?q=' + _esc(query);
 	if(start > 0) { queryURL += "&start=" + start; }
 	_IG_FetchContent(queryURL, function(responseText) {
 		tmp = document.createElement("div");
@@ -71,20 +71,13 @@ function init() {
 }
 
 function image_name(tld) {
-	return "us";
-/*
 	i = tld.indexOf("google.co");
-	if(i = -1) { return "us"; }
-	r = tld.substring(i, tld.length - 1);
-	
-	if(r.substr(0,1) == "m" && r.length == 1) { return "us"; }
-	
-	if(r.substr(0,1) == "m") {
-		return r.substring(2, r.length - 1);
+	rest = tld.substring(i + 9, tld.length - 1);
+	if(rest == "m") {
+		return "us";
 	} else {
-		return r.substring(1, r.length - 1);
+		return rest.substring(rest.indexOf(".") + 1, rest.length - 1);
 	}
-*/
 }
 
 _IG_RegisterOnloadHandler(init);
