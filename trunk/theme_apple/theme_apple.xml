@@ -7,7 +7,7 @@
 	</ConfigMap>
 	<ConfigMap type="Skin">
 		<Attribute name="header.background_color">#949494</Attribute>
-		<Attribute name="header.tile_image.url">http://hosting.gmodules.com/ig/gadgets/file/111485958094139593780/apple_header_tile.png</Attribute>
+		<Attribute name="header.tile_image.url">http://search-rankings-gadget.googlecode.com/svn/trunk/theme_apple/header_tile.png</Attribute>
 		<Attribute name="header.logo">white</Attribute>
 		<Attribute name="header.link_color">#383838</Attribute>
 		<Attribute name="header.text_color">#383838</Attribute>
