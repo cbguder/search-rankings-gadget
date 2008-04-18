@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ConfigMaps>
+	<ConfigMap type="Skin">
+		<Meta name="title">Apple Theme</Meta>
+		<Meta name="description">Leopard-inspired Apple theme.</Meta>
+		<Meta name="author">Can Berk Güder</Meta>
+	</ConfigMap>
+	<ConfigMap type="Skin">
+		<Attribute name="header.background_color">#949494</Attribute>
+		<Attribute name="header.tile_image.url">http://hosting.gmodules.com/ig/gadgets/file/111485958094139593780/apple_header_tile.png</Attribute>
+		<Attribute name="header.logo">white</Attribute>
+		<Attribute name="header.link_color">#383838</Attribute>
+		<Attribute name="header.text_color">#383838</Attribute>
+	</ConfigMap>
+</ConfigMaps>
+
