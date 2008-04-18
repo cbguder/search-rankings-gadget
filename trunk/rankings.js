@@ -70,13 +70,11 @@ function init() {
 }
 
 function image_name(tld) {
-	i = tld.indexOf("google.co");
-	rest = tld.substring(i + 9, tld.length - 1);
-	if(rest == "m") {
-		return "us";
-	} else {
-		return rest.substring(rest.indexOf(".") + 1, rest.length - 1);
-	}
+	idx = tld.indexOf("google.co");
+	rest = tld.substring(idx + 9, tld.length);
+
+	if(rest == "m") { return "us"; }
+	return rest.substring(rest.indexOf(".") + 1, rest.length);
 }
 
 _IG_RegisterOnloadHandler(init);
